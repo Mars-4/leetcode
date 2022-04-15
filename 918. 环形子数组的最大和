@@ -21,3 +21,4 @@ public:
         return maxVal >= 0 ? max(maxVal, total - minVal) : maxVal;
     }
 };
+ 
