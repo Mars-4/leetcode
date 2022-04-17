@@ -15,7 +15,6 @@ public:
             maxVal = max(val, maxVal);
             
             mval = min(min(mval * i, last * i), i);
-            minVal = min(mval, minVal);
         }
         
         return maxVal;
