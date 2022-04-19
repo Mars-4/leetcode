@@ -1,4 +1,4 @@
-class Solution {
+class Solution1 {
 public:
     int maxProduct(vector<int>& nums) {
         int val = 1;
@@ -18,5 +18,34 @@ public:
         }
         
         return maxVal;
+    }
+};
+
+class Solution2 {
+public:
+    int getMaxLen(vector<int>& nums) {
+        int positive = 0;
+        int negetive = 0;
+        int ans = 0;
+
+        for(int i : nums)
+        {
+            if(i != 0)
+            {
+                positive++;
+                negetive = negetive > 0 ? negetive + 1 : 0;
+                
+                if(i < 0)
+                {
+                    swap(positive, negetive);
+                }
+            }
+            else
+            {
+                positive = negetive = 0;
+            }
+            ans = max(ans, positive);
+        }
+        return ans;
     }
 };
