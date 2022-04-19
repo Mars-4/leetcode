@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int>& nums) {
+        //暴力解法
+        //int len = values.size();
+        //int maxScore = 0;
+        //for(int i = 0; i < len; i++)
+        //{
+        //    for(int j = i + 1; j < len; j++)
+        //    {
+        //        maxScore = max(maxScore, values[i] + values[j] + i - j);
+        //    }
+        //}
+        //return maxScore;
+
+        //动态规划
+        int len = nums.size();
+        int maxScore = nums[0];
+        int ans = 0;
+
+        for(int i = 1; i < len; i++)
+        {
+            ans = max(ans, maxScore + nums[i] - i);
+            maxScore = max(maxScore, nums[i] + i);
+        }
+        return ans;
+    }
+};
