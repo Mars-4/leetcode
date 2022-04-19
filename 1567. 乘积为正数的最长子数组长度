@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int getMaxLen(vector<int>& nums) {
+        int len = nums.size();
+        int positive = nums[0] > 0;
+        int negetive = nums[0] < 0;
+
+        int temp = 0;
+        int ans = positive;
+        for(int i = 1; i < len; ++i)
+        {
+            if(nums[i] > 0)
+            {
+                ++positive;
+                negetive = negetive > 0 ? negetive + 1 : 0;
+            }
+            else if(nums[i] < 0)
+            {
+                temp = negetive;
+                negetive = positive + 1;
+                positive = temp > 0 ? temp + 1 : 0;
+            }
+            else
+            {
+                positive = 0;
+                negetive = 0;
+            }
+            
+            ans = max(positive, ans);
+        }
+        return ans;
+    }
+};
