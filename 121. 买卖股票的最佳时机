@@ -1,13 +1,30 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int ans = 0;
-        int mInPrice = prices[0];
-        for(int i : prices)
+        //脑筋急转弯（贪心）
+        //int last = prices[0];
+        //int ans = 0;
+        //for(int i : prices)
+        //{
+        //    if(last < i)
+        //    {
+        //        ans += i - last;
+        //    }
+        //    last = i;
+        //}
+        //return ans;
+
+        //动态规划
+        int sell = 0;
+        int notSell = -prices[0];
+        int len = prices.size();
+        int temp;
+        for(int i = 1; i < len; i++)
         {
-            ans = max(i - mInPrice, ans);
-            mInPrice = min(mInPrice, i);
+            temp = sell;
+            sell = max(sell, notSell + prices[i]);
+            notSell = max(temp - prices[i], notSell);
         }
-        return ans;
+        return max(sell, notSell);
     }
 };
